@@ -15,8 +15,12 @@ def custom_len(input_list):
         8
 
     """
+    count = 0
 
-    return 0
+    for i in input_list:
+        count += 1
+
+    return count
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -43,7 +47,8 @@ def custom_append(input_list, value):
         True
 
     """
-
+    length = custom_len(input_list)
+    input_list[length:length] = [value]
     pass
 
 
@@ -60,8 +65,22 @@ def custom_extend(input_list, second_list):
         >>> custom_extend(months, ['Apr', 'May'])
         >>> months == ['Jan', 'Feb', 'Mar', 'Apr', 'May']
         True
-
+    
     """
+    # pending
+    # length = custom_len(input_list)
+    # for i in second_list:
+    #     input_list[length:length] = i
+    #input_list[1:]
+    #second_list = second_list[]
+    
+    length = custom_len(second_list)
+    # for i in second_list:
+    input_list[length:length] = second_list
+   
+
+
+
 
     pass
 
@@ -80,6 +99,7 @@ def custom_insert(input_list, index, value):
         True
 
     """
+    input_list[index:index] = [value]
 
     pass
 
@@ -99,6 +119,11 @@ def custom_remove(input_list, value):
         True
 
     """
+    length = custom_len(input_list)
+    for i in range(length):
+        if (input_list[i] == value):
+            del input_list[i]
+            break
 
     pass
 
@@ -118,8 +143,11 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
+    
+    last_value = input_list[-1]
+    input_list[-1:] = []
 
-    return None
+    return last_value
 
 
 def custom_index(input_list, value):
@@ -134,8 +162,10 @@ def custom_index(input_list, value):
         1
 
     """
-
-    return 0
+    length = custom_len(input_list)
+    for i in range(length):
+        if (input_list[i] == value):
+            return i
 
 
 def custom_count(input_list, value):
@@ -150,8 +180,11 @@ def custom_count(input_list, value):
         2
 
     """
-
-    return 0
+    count = 0
+    for i in input_list:
+        if i == value:
+            count +=1
+    return count
 
 
 def custom_reverse(input_list):
@@ -169,8 +202,26 @@ def custom_reverse(input_list):
         True
 
     """
+    swap_number = custom_len(input_list) // 2
 
-    pass
+    for i in range(swap_number):
+        current_n = input_list[i]
+        current_neg_n = input_list[(i + 1) * -1]
+        input_list[i] = current_neg_n
+        input_list[(i + 1) * -1] = current_n
+    # new_list = [i for i in range(len(input_list)-1,-1,-1)]
+    # input_list = new_list
+    # new_lis = []
+    # for i in input_list:
+    #     new_list = i + new_list
+
+    # reversedString=[]
+    # index = len(input_list) # calculate length of string and save in index
+    # while index > 0: 
+    #     reversedString += input_list[ index - 1 ] # save the value of str[index-1] in reverseString
+    #     index = index - 1 # decrement index
+    # print(reversedString) # reversed string
+    
 
 
 def custom_contains(input_list, value):
@@ -189,8 +240,10 @@ def custom_contains(input_list, value):
         True
 
     """
-
-    return None
+    for element in input_list:
+        if element == value :
+            return True
+    return False
 
 
 def custom_equality(some_list, another_list):
@@ -208,8 +261,15 @@ def custom_equality(some_list, another_list):
         False
 
     """
+    idx = 0
+    length1 = custom_len(some_list)
+    for element in range(length1):
+            if some_list[element] == another_list[idx]:
+                idx += 1
+            else:
+                return False
+    return True
 
-    return None
 
 
 # This is the part were we actually run the doctests.
